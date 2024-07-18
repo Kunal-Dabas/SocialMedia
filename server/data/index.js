@@ -1,5 +1,4 @@
 import mongoose from "mongoose";
-//To insert sample data for testing purposes
 
 const userIds = [
   new mongoose.Types.ObjectId(),

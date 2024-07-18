@@ -15,7 +15,7 @@ import { verifyToken } from "./middleware/auth.js";
 import userRoutes from "./routes/users.js";
 import postRoutes from "./routes/posts.js";
 import User from "./models/User.js";
-import Post from "./models/post.js";
+import Post from "./models/Post.js";
 import { users , posts } from "./data/index.js";
 
 // Configurations
@@ -61,7 +61,7 @@ const PORT = process.env.PORT || 6001 ;
 mongoose.connect( process.env.MONGO_URL 
 ).then( () => {
     app.listen( PORT , () => console.log(`SERVER Port at : ${PORT}`));
-    // User.insertMany( users );
-    // Post.insertMany( posts ); // Ran these two lines once to upload data to mongodb
+    User.insertMany( users );
+    Post.insertMany( posts ); // Ran these two lines once to upload data to mongodb
 
 }).catch( error => { `${error} did not connect`});
