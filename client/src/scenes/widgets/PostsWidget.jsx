@@ -14,6 +14,7 @@ const PostsWidget = ({ userId, isProfile = false }) => {
       headers: { Authorization: `Bearer ${token}` },
     });
     const data = await response.json();
+    // console.log("herereeeeeeeee ",data);
     dispatch(setPosts({ posts: data }));
   };
 
@@ -26,10 +27,12 @@ const PostsWidget = ({ userId, isProfile = false }) => {
       }
     );
     const data = await response.json();
+    // console.log("herereeeeeeeee ",data);
     dispatch(setPosts({ posts: data }));
   };
 
   useEffect(() => {
+    // console.log("hereeeeeeeeeeeeeeee");
     if (isProfile) {
       getUserPosts();
     } else {
@@ -39,19 +42,20 @@ const PostsWidget = ({ userId, isProfile = false }) => {
 
   return (
     <>
-      {posts.map(
-        ({
-          _id,
-          userId,
-          firstName,
-          lastName,
-          description,
-          location,
-          picturePath,
-          userPicturePath,
-          likes,
-          comments,
-        }) => (
+      {posts.length &&
+        posts.map(
+          ({
+            _id,
+            userId,
+            firstName,
+            lastName,
+            description,
+            location,
+            picturePath,
+            userPicturePath,
+            likes,
+            comments,
+          }) => (
           <PostWidget
             key={_id}
             postId={_id}
@@ -66,6 +70,7 @@ const PostsWidget = ({ userId, isProfile = false }) => {
           />
         )
       )}
+      
     </>
   );
 };

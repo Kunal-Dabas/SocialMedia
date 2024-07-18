@@ -51,7 +51,7 @@ const Form = () => {
   const { palette } = useTheme();
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  const isNonMobile = useMediaQuery("(min-width:600px)");
+  // const isNonMobile = useMediaQuery("(min-width:600px)");
   const isLogin = pageType === "login";
   const isRegister = pageType === "register";
 
@@ -71,7 +71,7 @@ const Form = () => {
       }
     );
     const savedUser = await savedUserResponse.json();
-    onSubmitProps.resetForm();
+    onSubmitProps.resetForm(); // Resets the form after submit just in case 
 
     if (savedUser) {
       setPageType("login");
@@ -104,7 +104,7 @@ const Form = () => {
 
   return (
     <Formik
-      onSubmit={handleFormSubmit}
+      onSubmit={handleFormSubmit} // When the button with type submit is pressed below it will triigger this and go to the function "handleFormSubmit"
       initialValues={isLogin ? initialValuesLogin : initialValuesRegister}
       validationSchema={isLogin ? loginSchema : registerSchema}
     >
@@ -124,7 +124,7 @@ const Form = () => {
             gap="30px"
             gridTemplateColumns="repeat(4, minmax(0, 1fr))"
             sx={{
-              "& > div": { gridColumn: isNonMobile ? undefined : "span 4" },
+              "& > div": { gridColumn: undefined},
             }}
           >
             {isRegister && (
@@ -236,7 +236,7 @@ const Form = () => {
           <Box>
             <Button
               fullWidth
-              type="submit"
+              type="submit" // this sumbits the formik form provided above and when clicked it triggers its onSubmit function around line 121
               sx={{
                 m: "2rem 0",
                 p: "1rem",
